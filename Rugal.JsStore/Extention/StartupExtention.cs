@@ -6,7 +6,7 @@ namespace Rugal.JavaScriptStore.Extention
 {
     public static class StartupExtention
     {
-        public static IServiceCollection AddJsDI(this IServiceCollection Services)
+        public static IServiceCollection AddJsStore(this IServiceCollection Services)
         {
             Services.AddScoped<JsStoreService>();
             Services.AddScoped<JsStoreSetting>();
