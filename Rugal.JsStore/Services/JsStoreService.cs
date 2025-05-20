@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Html;
-using Rugal.JavaScriptStore.Model;
+using Rugal.JavaScriptStore.Models;
 using System.Text.Json;
 
-namespace Rugal.JavaScriptStore.Service;
+namespace Rugal.JavaScriptStore.Services;
 
 public class JsStoreService
 {
-    public const string JsStoreKey = "JsStore";
+    public const string DefaultStoreKey = "Default";
     public const string QueryKey = "Query";
     public readonly JsStoreSetting Setting;
     public Dictionary<string, Dictionary<string, object>> JsStore { get; private set; }
@@ -14,19 +14,13 @@ public class JsStoreService
     {
         this.Setting = Setting;
         JsStore = [];
-        WithDefaultStore(JsStoreKey);
+        WithDefaultStore(DefaultStoreKey);
         WithDefaultStore(QueryKey);
     }
     public IHtmlContent RenderJs()
     {
-        var JsVars = new List<string> { };
-        foreach (var Store in JsStore)
-        {
-            var Js = $"const {Store.Key} = {JsonSerializer.Serialize(Store.Value)};";
-            JsVars.Add(Js);
-        }
-        var JsResult = string.Join('\n', JsVars);
-        var Result = new HtmlString(JsResult);
+        var ScriptString = $"window.jsStore = {JsonSerializer.Serialize(JsStore)}";
+        var Result = new HtmlString(ScriptString);
         return Result;
     }
     public JsStoreService AddStore(string StoreKey, string Key, object Value)
@@ -36,7 +30,7 @@ public class JsStoreService
     }
     public JsStoreService AddStore(string Key, object Value)
     {
-        BaseAdd("JsStore", Key, Value);
+        BaseAdd(DefaultStoreKey, Key, Value);
         return this;
     }
     public JsStoreService RemoveStore(string StoreKey, string Key)
@@ -46,12 +40,12 @@ public class JsStoreService
     }
     public JsStoreService RemoveStore(string Key)
     {
-        BaseRemove(JsStoreKey, Key);
+        BaseRemove(DefaultStoreKey, Key);
         return this;
     }
     public JsStoreService AddQuery(string Key, object Value)
     {
-        BaseAdd("Query", Key, Value);
+        BaseAdd(QueryKey, Key, Value);
         return this;
     }
     public JsStoreService RemoveQuery(string Key)

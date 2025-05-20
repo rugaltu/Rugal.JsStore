@@ -1,7 +1,6 @@
-﻿using Rugal.JavaScriptStore.Service;
+﻿using Rugal.JavaScriptStore.Services;
 
-namespace Rugal.JavaScriptStore.Model;
-
+namespace Rugal.JavaScriptStore.Models;
 public class JsStoreSetting
 {
     public Dictionary<string, Dictionary<string, object>> DefaultStore { get; private set; }
@@ -25,7 +24,7 @@ public class JsStoreSetting
     }
     public JsStoreSetting AddDefaultStore(string Key, object Value)
     {
-        AddDefaultStore(JsStoreService.JsStoreKey, Key, Value);
+        AddDefaultStore(JsStoreService.DefaultStoreKey, Key, Value);
         return this;
     }
     public void ActionExecuted(IServiceProvider Provider, JsStoreService JsStore)

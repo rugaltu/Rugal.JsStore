@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
-using Rugal.JavaScriptStore.Service;
+using Rugal.JavaScriptStore.Services;
 
 namespace Rugal.JavaScriptStore.Attributes;
 

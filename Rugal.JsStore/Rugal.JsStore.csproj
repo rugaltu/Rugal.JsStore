@@ -6,9 +6,9 @@
 	  <Nullable>disable</Nullable>
 	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 
-	  <AssemblyVersion>1.0.4</AssemblyVersion>
-	  <FileVersion>$(AssemblyVersion)-beta</FileVersion>
-	  <Version>$(AssemblyVersion)-beta</Version>
+	  <AssemblyVersion>1.0.0.2</AssemblyVersion>
+	  <FileVersion>$(AssemblyVersion)</FileVersion>
+	  <Version>$(AssemblyVersion)</Version>
 	  <Authors>Rugal</Authors>
 	  <RepositoryUrl>https://github.com/john2653589/Rugal.JsStore</RepositoryUrl>
 	  <RootNamespace>Rugal.JavaScriptStore</RootNamespace>
